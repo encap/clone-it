@@ -1,0 +1,51 @@
+@font-face {
+    font-family: block;
+    src: url("./block.otf") format("opentype");
+}
+
+*,
+::before,
+::after {
+  font-family: 'block', sans-serif !important;
+}
+
+#check:checked + label svg #one {
+  transform: rotate(45deg);
+}
+
+#check:checked + label svg #two {
+  transform: rotate(-45deg);
+}
+
+p {
+  overflow: hidden!important;
+}
+aside p {
+  font-size: .8em;
+}
+
+.wrapper p {
+  flex: 0 1 auto;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+label svg path {
+  transform-origin: 35% 50%;
+  transition: transform .150s cubic-bezier(0.06, 0.63, 0.91, 0.66);
+}
+
+label svg {
+  margin-right: 0.5em;
+}
+
+@media (max-width: 400px) {
+  aside {
+    width: 40vw!important;
+  }
+  #check:checked + label::before {
+    left: calc(40vw - 1em)!important;
+  }
+}

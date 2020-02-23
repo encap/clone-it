@@ -1,0 +1,370 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+  filter: var(--overlayBlur);
+  transition: filter .3s;
+}
+
+.menu, #loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  z-index: 6;
+}
+
+.menu {
+  min-width: 260px;
+  border-radius: 1em;
+  padding: 14px 1em 14px 1em;
+  background: linear-gradient(180deg, var(--menuTopBg) 0%, var(--menuTopBg) 3em, var(--menuBg) 3em, var(--menuBg) 100%);
+  width: 50%;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: transform .1s, opacity .1s, width .3s;
+}
+
+#pauseMenu  {
+  display: block;
+  opacity: 1;
+  z-index: 7;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#levelNotFoundMenu, #resultsMenu, #loading, #helpMenu, #confirmMsg {
+  display: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.5);
+}
+
+.menu button {
+  height: 2em;
+}
+
+.menuTop {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 3em;
+}
+
+.menu .logo {
+  padding: 0;
+  margin: 0;
+  height: .75em;
+}
+.menu h1 {
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+  line-height: .7em;
+}
+
+#helpMenu {
+  position: relative;
+  width: 80%;
+  max-height: 90%;
+  z-index: 8;
+  overflow-y: hidden;
+}
+
+#helpMenu .menuTop {
+  min-height: 3em;
+}
+
+#helpMenu .menuContainer {
+  height: 60vh;
+  overflow-y: scroll;
+  margin-bottom: 0;
+}
+#helpMenu .menuContainer p {
+  width: 100%;
+  text-align: left;
+  margin: 5px 0;
+}
+
+#helpMenu h2 {
+  text-align: left;
+}
+
+h4 {
+  margin: 10px;
+}
+
+ol {
+  margin: 0;
+}
+
+.fontTip {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fontTip img {
+  width: 20em;
+  max-height: 10em;
+}
+
+#levelNotFoundMenu h1 {
+  line-height: normal;
+}
+
+#levelNotFoundMenu {
+  background: linear-gradient(180deg, var(--menuTopBg) 0%, var(--menuTopBg) 5.5em, var(--menuBg) 5.5em, var(--menuBg) 100%);
+}
+
+#levelNotFoundMenu .menuTop {
+  height: 5.5em;
+}
+
+.closeBtn, .helpBtn {
+  width: 2em;
+}
+.closeBtn:after, .helpBtn:after {
+  top: -8px !important;
+}
+
+.menu h2 {
+  text-align: center;
+}
+
+.menu.small h2 {
+  margin: 2em 0 1em;
+}
+
+.menu.small .menuContainer h2 {
+  width: 100%;
+  text-align: center;
+}
+
+#confirmMsg, #levelNotFoundMenu {
+  max-width: 600px;
+}
+
+
+.menuContainer {
+  margin-bottom: 1em;
+  display: flex;
+  min-height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.menuContainer label {
+  line-height: 2em;;
+}
+
+.menuContainer input {
+  -webkit-appearance: none;
+  background-color: transparent;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  top: 8px;
+  border: 2px solid;
+  border-color: var(--cyan);
+  border-radius: 50%;
+  transition: border .2s ease-out, background-color .3s ease, box-shadow .1s ease;
+}
+
+.menuContainer input:checked {
+  border-color: var(--proRed);
+}
+
+.menuContainer input:hover {
+  background-color: var(--cyanAlpha);
+}
+
+.menuContainer input:checked:hover {
+  background-color: var(--proRedAlpha);
+}
+
+.menuContainer input:disabled:hover {
+  background-color: unset;
+  cursor: not-allowed;
+}
+
+.menuContainer input:after {
+  content: "\f00c";
+  position: absolute;
+  font-family: "Font Awesome 5 Free"; font-weight: 900;
+  color: var(--cyan);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  transition: color .3s ease;
+}
+.menuContainer input:checked:after {
+  color: var(--proRed);
+  content: "\f00d";
+}
+
+.menuContainer p {
+  width: 100%;
+  text-align: center;
+}
+
+.menuBottom {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding-top: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.author {
+  transform: translateY(6px);
+  font-size: 15px;
+}
+
+.fancyButton {
+  width: auto;
+  white-space: nowrap;
+  word-break: keep-all;
+  padding: 0% 2%;
+  min-width: 20%;
+  border-radius: 1em;
+  background-color: var(--fontColor);
+  color: var(--menuBg);
+  transform: translateY(0px);
+  transition: background-color .4s, color .2s, border .3s, border-radius .5s, transform .3s;
+}
+
+.fancyButton:hover {
+  border: 1px solid var(--cyan);
+  transform: translateY(-3px);
+  border-radius: 0;
+  background-color: transparent;
+  color: inherit;
+}
+
+.fancyButton:active {
+  background-color: var(--fontColor);
+}
+
+.fancyButton:after {
+  bottom: -18px;
+}
+
+.fancyButton:disabled:hover {
+  transform: translateY(0);
+  color: var(--menuBg);
+  background-color: var(--fontColor);
+  border: 0px solid white;
+  border-radius: 1em;
+}
+
+#donateButton {
+ transition: background-color .4s, color 2s, border .3s, border-radius .7s, transform .3s;
+}
+
+#donateButton:hover {
+  border-color: var(--proRed);
+  color: var(--proRed);
+}
+
+#donateButton:after {
+  background-color: var(--proRed);
+}
+
+#resume {
+  display: none;
+}
+
+#resume:disabled {
+  cursor: default;
+}
+
+
+@media (max-width: 1050px) {
+  .menu {
+      background: linear-gradient(180deg, var(--menuTopBg) 0%, var(--menuTopBg) 4.5em, var(--menuBg) 4.5em, var(--menuBg) 100%);
+      width: 70%;
+  }
+  .menuTop {
+    height: 4em;
+  }
+
+  #helpMenu {
+      background: linear-gradient(180deg, var(--menuTopBg) 0%, var(--menuTopBg) 3em, var(--menuBg) 3em, var(--menuBg) 100%);
+  }
+  #helpMenu .menuTop h1{
+    font-size: 0px!important
+  }
+  #helpMenu .menuTop {
+    padding-right: 1em;
+    height: 3em;
+    min-height: 3em;
+  }
+}
+@media (max-width: 600px) {
+  .menu.fullscreen, #helpMenu{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0!important;
+    transform: translate(0, 0)!important;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .menu.small {
+    max-height: 60vh;
+    min-height: 50vh;
+    width: 90vw;
+  }
+
+  #helpMenu {
+    padding: 1em 2px 1em 14px;
+  }
+
+  #helpMenu .menuTop {
+    padding-right: 1em;
+    height: 2em;
+    min-height: 2em;
+  }
+
+  #helpMenu .menuContainer {
+    height: calc(100% - 4em);
+  }
+    
+  .menuContainer label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .fontTip {
+    display: block;
+  }
+
+  .fontTip img {
+    width: 98%;
+    max-height: none;
+  }
+
+  .menuBottom {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 3.1em;
+    padding: 1em;
+  }
+
+}

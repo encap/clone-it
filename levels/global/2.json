@@ -1,0 +1,3 @@
+{
+	"cssHints": ["*", "body", "input", "label", "label::before", "#check:checked + label ~ aside", "#check:checked + label ~ article", "aside, article", "aside", "article", "article .wrapper", "article .wrapper h1"]
+}

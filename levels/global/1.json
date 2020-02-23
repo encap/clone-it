@@ -1,0 +1,3 @@
+{
+	"cssHints": ["*", "html", "body", "h2", "input", "input::placeholder", "form div", "input[type=\"password\"]", "input[type=\"submit\"]", "input[type=\"submit\"]:hover", "a"]
+}

@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "html"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "func-names": "off",
+    "no-undef": "off",
+    "no-param-reassign": ["error", { "props": false }]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "script"
+  },
+  "globals": {
+    "preventTyping": "readonly"
+  }
+}

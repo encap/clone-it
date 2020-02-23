@@ -1,0 +1,162 @@
+main {
+  position: fixed;
+  top: .5%;
+  height: calc(100% - calc(var(--footerHeight) + .5em));
+  bottom: 3em;
+  width: 100%;
+}
+
+main::after {
+  content: "";
+  width: 100%;
+  top: 50%;
+  left: 0;
+  border-bottom: 1px solid #5c6370;
+  position: absolute;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0%;
+  left: 50%;
+  border-right: 1px solid #5c6370
+}
+
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.html, .formula {
+  padding-bottom: 3px;
+}
+.css, .result {
+  padding-top: 4px;
+}
+
+.html, .css, .formula, .result {
+  position: relative;
+  height: 50%;
+}
+
+.css {
+  display: block;
+}
+
+.cssArea {
+  position: relative;
+  height: 100%;
+  flex-basis: 50%;
+}
+
+
+.puzzles {
+  display: none;
+  position: relative;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  font-size: 1.1rem;
+  font-weight: 100;
+  overflow-wrap: normal;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.puzzles span {
+  display: inline-block;
+  cursor: grab;
+  border: 2px solid var(--cyan);
+  border-radius: 0em;
+  padding: 2% 3%;
+  white-space: nowrap;
+  margin: 2%;
+
+}
+.editorPanel, .renderPanel {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+}
+
+.CodeMirror {
+  height: 100% !important;
+}
+
+.CodeMirror-sizer {
+  margin-left: 25px !important;
+}
+.CodeMirror-linenumber, .CodeMirror-linenumbers{
+  padding: 0 !important;
+  width: 10px !important;
+  min-width: 10px !important;
+}
+
+.CodeMirror-readonly .CodeMirror-cursor {
+  display: none !important
+}
+
+.cm-s-one-dark .CodeMirror-cursor {
+
+  border-left: var(--cursorWidth) solid var(--cursorColor) !important;
+  /* border-left: 2.3em solid var(--proRedAlpha) !important; */
+}
+
+.renderPanel {
+  position: absolute;
+  padding-left: 3px;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.formula p, .result p{
+ text-rendering: optimizeSpeed;
+}
+
+
+@media (max-width: 600px) {
+  main {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-y: hidden;
+  scroll-snap-type: mandatory;
+  scroll-snap-type: x mandatory;
+  scroll-snap-type: y mandatory;
+  scroll-snap-points-x: repeat(100vw);
+  scroll-snap-points-y: repeat(100vh);
+  }
+
+  main:after {
+    width: 199%;
+  }
+  main:before {
+    left: 100%;
+    height: 200vh;
+  }
+
+  .editorPanel, .renderPanel {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+/*
+  .cssArea .cm-s-one-dark .CodeMirror-cursor {
+
+  }
+*/
+  .editorPanel {
+    scroll-snap-align: start;
+  }
+
+  .renderPanel {
+    position: relative;
+    scroll-snap-align: end;
+  }
+}

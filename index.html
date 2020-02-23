@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="hsla(222, 13%, 19%)">
+  <link rel="manifest" href="manifest.json">
+  <meta name="thumbnail" content="https://punktownica.pl/css/snapshot2.PNG" />
+  <meta property="og:image" content="https://punktownica.pl/css/snapshot2.PNG" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1056" />
+  <link rel="shortcut icon" href="./favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="resultsMenu.css">
+  <script defer src="level.js"></script>
+  <script defer src="main.js"></script>
+  <script defer src="menu.js"></script>
+  <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="codemirror/theme/one-dark.css">
+  <link rel="stylesheet" href="codemirror/addon/color/codemirror-colorpicker.css">
+  <link rel="stylesheet" href="font-awesome/css/all.css">
+  <script src="codemirror/lib/codemirror.js"></script>
+  <script defer src="codemirror/addon/display/placeholder.js"></script>
+  <script defer src="codemirror/addon/edit/closebrackets.js"></script>
+  <script defer src="codemirror/addon/edit/closetag.js"></script>
+  <script defer src="codemirror/addon/fold/xml-fold.js"></script>
+  <script defer src="codemirror/addon/color/codemirror-colorpicker.min.js"></script>
+  <script defer src="codemirror/mode/xml/xml.js"></script>
+  <script defer src="codemirror/mode/css/css.js"></script>
+  <script defer src="engine.js"></script>
+  <script defer src="codeMirrorConfig.js"></script>
+  <script defer src="slider.js"></script>
+  <script defer src="review.js"></script>
+  <!-- <script async src="font-awesome/js/all.js"></script> -->
+  <title>Clone It - CSS game</title>
+  <style id="style"></style>
+  <style id="cmStyle"></style>
+
+</head>
+<body>
+
+  <div class="menu fullscreen" id="pauseMenu">
+      <div class="menuTop">
+        <h1 class="title"><!--<img class="logo" src="favicon.png"> -->CLONE IT! <!--<span style="font-size: 20px"> - ALPHA 09.11 </span>--></h1>
+
+        <div class="menuTopButtons">
+          <button class="helpBtn"><i class="far fa-question-circle fa-2x"></i></button>
+          <button class="closeBtn closeMenu"><i class="fas fa-times fa-2x"></i></button>
+        </div>
+      </div>
+      <div class="mode">
+        <div class="labels">
+         <span id="label0">Selector</span>
+         <span id="label1">Junior</span>
+         <span id="label2">Easy</span>
+         <span id="label3">Normal</span>
+         <span id="label4">Pro</span>
+        </div>
+        <input type="range" id="modeSlider" class="rangeslide" value="0" min="0" max="100" step="1">
+      </div>
+      <div class="modeDescBox">
+        <p class="modeDesc">You have to match selectors in stylesheet based on read-only page structure.</p>
+        <p class="modeDesc"></p>
+      </div>
+      <h2>Settings</h2>
+      <div class="menuContainer">
+        <label for="hints">Give me hints
+          <input id="hints" type="checkbox" name="hints"></input>
+        </label>
+        <label for="autoRefresh">Auto refresh preview
+          <input id="autoRefresh" type="checkbox" name="autoRefresh"></input>
+        </label>
+        <label for="clock">Display clock
+          <input id="clock" type="checkbox" name="clock"></input>
+        </label>
+        <label for="randomLevels">AI generated levels
+          <input id="randomLevels" type="checkbox" name="randomLevels" checked disabled></input>
+        </label>
+      </div>
+      <div class="menuBottom">
+        <span id="author" class="author">Made with <i class="fas fa-heart" style="color: var(--proRed);"></i> by Łukasz Wielgus</span>
+        <button id="resume" class="fancyButton resume" disabled>Resume</button>
+        <button id="loadLevel" class="fancyButton">I'm ready</button>
+      </div>
+  </div>
+
+  <div class="menu fullscreen" id="helpMenu">
+    <div class="menuTop">
+      <h1 class="title">It looks like you're here for the first time</h1>
+      <button class="closeBtn"><i class="fas fa-times fa-2x"></i></button>
+    </div>
+
+    <div class="menuContainer">
+      <h2>CLONE IT is a learning game based on challenges in CSS styling.</h2>
+      <p>
+        You have to make site preview in bottom right look the same (and animate the same) as page above.
+        To do this, you should use CSS editor (bottom left) or even write page structure in HTML editor (top left).
+      </p>
+      <h2>Instructions and tips:</h2>
+      <div class="fontTip">
+        <p>
+          Click on labels or adjust the slider to select game mode.<br>
+          Use ctrl - z or <i class="fas fa-undo fa-sm"></i> button to undo.<br>
+          To reverse your last undo click ctrl - alt - z.<br>
+          If you disabled auto-refresh in menu, use ctrl-s or <i class="fas fa-play fa-sm"></i> to update preview.<br>
+          In certain modes, if you are pro, you can disable hints.<br>
+          Values showed on results page comes from computedStyle, but You should use relative (%, em, vw...) units.<br>
+          To cancel dragging just drop block outside editor.<br>
+          Remember to not declare the same selector twice. <br>
+          In some levels, text is displayed as rectangles. This is because I'm bored by Lorem ipsum...
+        </p>
+        <img src="./snapshot.PNG">
+      </div>
+
+      <p>You can choose how do you want to play:</p>
+        <ol>
+          <li>
+            <h4>Selector</h4>
+            <p>As the name suggests, your task is to complete CSS selectors. You can read page structure, but you can't modify it. </p>
+          </li>
+          <li>
+            <h4>Junior</h4>
+            <p>You have to drag blocks of CSS selectors, properties and values in to right place. Just like a puzzles.</p>
+          </li>
+          <li>
+            <h4>Easy</h4>
+            <p>Finally, you can write your own CSS without hints, but you can use the given ones. Writing HTML is beyond your duties. You should take a look at it.</p>
+          </li>
+          <li>
+            <h4>Normal</h4>
+            <p>Like in real life. Write page structure and stylesheet from scratch. We will give you some values to put in right places (ex. color, paddings...).</p>
+          </li>
+          <li>
+            <h4>Pro</h4>
+            <p>All is up to you. Level checking will propably broke. Use your creativity and share the solution with your friends.</p><br>
+          </li>
+        </ol>
+      <p>
+        This game will be constantly developed. In the future, it will be able to:
+      </p>
+      <ul>
+        <li>work smooth on smartphones</li>
+        <li>save your work and synchronize between devices</li>
+        <li>algorithmically generate levels</li>
+        <li>teach you CSS</li>
+      </ul>
+      <p>You can send me new levels on learn@awasome.css</p>
+    </div>
+    <div class="menuBottom">
+      <span class="author">Made by 15yo Łukasz Wielgus</span>
+      <button id="closeHelp" class="fancyButton">I understand</button>
+    </div>
+  </div>
+
+  <div class="menu small" id="levelNotFoundMenu">
+    <div class="menuTop">
+      <h1 class="title"></h1>
+      <div class="menuTopButtons">
+        <button class="helpBtn"><i class="far fa-question-circle fa-2x"></i></button>
+      </div>
+    </div>
+    
+    <div class="menuContainer">
+      <h2>More levels coming soon</h2>
+      <p>I'm making this alone.</p>
+    </div>
+    <div class="menuBottom">
+      <button class="fancyButton reset">Retry</button>
+      <button id="loadFirstLevel" class="fancyButton">Load first level</button>
+    </div>
+  </div>
+
+  <div class="menu small" id="confirmMsg">
+    <div class="menuTop">
+      <h1 class="title">Are you sure?</h1>
+    </div>
+    <div class="menuContainer">
+      <h2>You will lose current progress.</h2>
+    </div>
+    <div class="menuBottom">
+      <button id="decline" class="fancyButton">Back</button>
+      <button id="accept" class="fancyButton">Go ahead</button>
+    </div>
+  </div>
+
+  <div class="loading" id="loading"></div>
+
+  <div class="menu fullscreen" id="resultsMenu">
+    <div class="menuTop">
+      <h1 class="title">Results</h1>
+      <div class="menuTopButtons">
+        <button class="helpBtn"><i class="far fa-question-circle fa-2x"></i></button>
+        <button class="closeBtn closeMenu"><i class="fas fa-times fa-2x"></i></button>
+      </div>
+    </div>
+    <h2></h2>
+    <div class="resultsContainer">
+      <p></p>
+    </div>
+    <div class="menuBottom">
+      <button class="fancyButton" id="fixButton">Let me fix it</button>
+      <button class="fancyButton" id="donateButton">Donate</button>
+      <button id="loadNextLevel" class="fancyButton">Next</button>
+    </div>
+  </div>
+
+<div class="overlay">
+  <main>
+    <section class="editorPanel">
+      <div class="html">
+        <textarea id="htmlEditorArea" class="editor"  placeholder="page structure"></textarea>
+      </div>
+      <div class="css">
+        <div class="cssArea">
+          <textarea id="cssEditorArea" class="editor" placeholder="styling"></textarea>
+        </div>
+        <div id="puzzles" class="puzzles">
+         <!-- <span draggable="true" ondragstart="handleDrag(event)">.div21234
+         </span> -->
+       </div>
+      </div>
+    </section>
+    <section class="renderPanel">
+      <div class="formula">
+        <iframe id="original" class="original"></iframe>
+      </div>
+      <div class="result">
+        <iframe id="mirror" class="mirror"></iframe>
+      </div>
+    </section>
+  </main>
+  <footer>
+      <div class="name">
+        <!-- <img class="logo" src="favicon.png"> -->
+        <span class="title">CLONE IT! </span>
+      </div>
+      <div class="buttons">
+        <button id="pause"><i class="fas fa-pause fa-lg"></i></button>
+        <button id="run"><i class="fas fa-play fa-lg"></i></button>
+        <button id="check"><i class="fas fa-check fa-lg"></i></button>
+        <button id="undo"><i class="fas fa-undo fa-lg"></i></button>
+        <button id="reset"><i class="fas fa-sync-alt fa-lg"></i></button>
+        <button id="skipLevel"><i class="fas fa-forward fa-lg"></i></button>
+      </div>
+      <div class="layoutSettings">
+          <span id="h"></span><span id="min"></span><span id="sec">00</span>
+          <button id="layout1">
+              <i class="fas fa-arrows-alt-v fa-lg"></i>
+          </button>
+          <button id="layout2"><i class="fas fa-divide fa-lg"></i></button>
+          <!-- <button id="layout4"><i class="fas fa-th-large fa-lg"></i></button> -->
+          <button id="zoomOut"><i class="fas fa-search-minus fa-lg"></i></button>
+          <button id="zoomIn"><i class="fas fa-search-plus fa-lg"></i></button>
+      </div>
+  </footer>
+</div>
+
+<script>
+// eslint-disable-next-line no-restricted-globals
+if (screen.width <= 700 && document.location.search === '?eruda') {
+  const script = document.createElement('script');
+  script.src = '//cdn.jsdelivr.net/npm/eruda';
+  document.body.appendChild(script);
+  script.onload = () => {
+    eruda.init();
+    console.warn('ERUDA');
+  };
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+
+.messageContainer {
+  padding-right: 2em;
+  margin: 2em 0;
+}
+
+.messageIcon {
+  color: var(--proRed);
+}
+
+.messageContainer p {
+  margin: 0;
+}
+
+.messageContainer .message {
+  margin-left: 1em;
+  display: inline-flex;
+  width: calc(100% - 2em);
+  justify-content: space-between;
+}
+
+.messageProperty {
+  color: var(--cyan);
+}
+
+.messageText {
+  color: var(--fontColor);
+}
+
+.message .bracket {
+  color: var(--fontColor);
+}
+
+.message .equal {
+  color: var(--fontColor);
+}
+
+.message .attribute {
+  color: var(--cyan);
+}
+
+.messageElement {
+  color: var(--ticks);
+}
+
+.messageElementName {
+  color: var(--proRed)
+}
+
+.messageContainer .messageHint {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.hintText {
+  color: var(--ticks);
+}
+
+
+
+.resultsContainer .manyMore {
+  margin-left: 2em;
+  color: var(--ticks);
+}
+
+.shouldFix:hover {
+  background-color: var(--proRed);
+  border-color: var(--proRed);
+}
+.shouldFix:after {
+  background-color: var(--proRed);
+}
