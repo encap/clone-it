@@ -90,6 +90,7 @@ const level = {
       });
     };
 
+
     Promise.all(urls.map(url => fetchFile(url)))
       .then(data => {
         for (let i = 0; i < data.length; i += 1) {
@@ -157,7 +158,7 @@ const level = {
             { once: true }
           );
 
-          console.warn(`Loaded ${this.current}`);
+          // console.warn(`Loaded ${this.current}`);
 
           if (!autoRefresh.checked) {
             if (this.mode === 'normal' || this.mode === 'pro') {

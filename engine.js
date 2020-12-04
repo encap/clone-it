@@ -18,7 +18,7 @@ function run() {
     ${cssCodeEditor.getValue()}
   </style>
   ${htmlCodeEditor.getValue()}`;
-  console.log('run');
+  // console.log('run');
 }
 
 document.getElementById('run').addEventListener('click', run);

@@ -100,6 +100,7 @@ for (let i = 0; i < menu.length; i += 1) {
     menu[i]
       .querySelector('.closeMenu')
       .addEventListener('click', () => popUp.close());
+
   } catch (e) {
     // nothing
   }
@@ -125,6 +126,10 @@ document
 document
   .querySelector('#helpMenu .closeBtn')
   .addEventListener('click', () => popUp.close(helpMenu));
+document
+  .querySelector('#fixButton')
+  .addEventListener('click', () => popUp.close());
+
 document.getElementById('closeHelp').addEventListener('click', () => {
   popUp.close(helpMenu);
 
