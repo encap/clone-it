@@ -40,7 +40,8 @@ function handleDragStart(ev) {
 
 let doc;
 let cursorPos;
-function handleDrop(ev) {
+
+function handleDrop() {
   level.inProgress = true;
   check.disabled = false;
   console.log('drop');
@@ -49,7 +50,7 @@ function handleDrop(ev) {
   cssCodeEditor.replaceRange(
     `${currentDragElement.innerText} {`,
     { line: cursorPos.line, ch: 0 },
-    { line: cursorPos.line }
+    { line: cursorPos.line },
   );
 
   if (level.mode === 'selector' || level.mode === 'easy') {
@@ -65,37 +66,37 @@ cssArea.addEventListener('drop', handleDrop);
 
 document.addEventListener(
   'keydown',
-  ev => {
+  (ev) => {
     if (
-      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey) &&
-      ev.altKey &&
-      ev.key === 'z'
+      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey)
+      && ev.altKey
+      && ev.key === 'z'
     ) {
       ev.preventDefault();
       console.log('redo');
       cssCodeEditor.redo();
       cssCodeEditor.redo();
     } else if (
-      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey) &&
-      ev.key === 'z'
+      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey)
+      && ev.key === 'z'
     ) {
       ev.preventDefault();
       undo();
     } else if (
-      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey) &&
-      ev.key === 's'
+      (window.navigator.platform.match('Mac') ? ev.metaKey : ev.ctrlKey)
+      && ev.key === 's'
     ) {
       ev.preventDefault();
       run();
     } else if (
       (window.navigator.platform.match('Mac')
         ? ev.metaKey
-        : ev.ctrlKey && ev.shiftKey && ev.altKey) &&
-      ev.key === 'Q'
+        : ev.ctrlKey && ev.shiftKey && ev.altKey)
+      && ev.key === 'Q'
     ) {
       ev.preventDefault();
       level.cheat();
     }
   },
-  false
+  false,
 );

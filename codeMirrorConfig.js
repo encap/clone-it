@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const htmlEditorArea = document.getElementById('htmlEditorArea');
 const cssEditorArea = document.getElementById('cssEditorArea');
 
@@ -34,9 +35,7 @@ function indentWrappedLine(editor) {
   const charWidth = editor.defaultCharWidth();
   const basePadding = 2;
   editor.on('renderLine', (cm, line, elt) => {
-    const offset =
-      CodeMirror.countColumn(line.text, null, cm.getOption('tabSize')) *
-      charWidth;
+    const offset = CodeMirror.countColumn(line.text, null, cm.getOption('tabSize')) * charWidth;
     elt.style.textIndent = `-${offset}px`;
     elt.style.paddingLeft = `${basePadding + offset}px`;
   });

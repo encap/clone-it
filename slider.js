@@ -41,9 +41,9 @@ slider.updateThumb = () => {
       'pink',
       'lightRed',
       'red',
-      'proRed'
+      'proRed',
     );
-
+    // don't look at this spaghetti
     if (percent >= 0 && percent < 8) {
       level.mode = 'selector';
       root.style.setProperty('--thumbColor', 'var(--cyan)');

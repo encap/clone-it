@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const level = {
   current: 1,
   mode: 'selector',
@@ -8,7 +9,6 @@ const level = {
 
   handleNotFound() {
     console.warn('NOT FOUND');
-    // eslint-disable-next-line prettier/prettier
     levelNotFoundMenu.querySelector('.title').innerText = `Level ${this.current} not found!`;
 
     popUp.close(loading);
@@ -33,7 +33,7 @@ const level = {
     if (this.firstTime) {
       popUp.show(helpMenu);
       const d = new Date();
-      d.setTime(d.getTime() + 60 * 24 * 60 * 60 * 1000);
+      d.setTime(d.getTime() + (60 * 24 * 60 * 60 * 1000));
       const expires = `;expires=${d.toUTCString()}`;
       document.cookie = `firstTime=false${expires}`;
       return;
@@ -78,21 +78,19 @@ const level = {
     const urls = Object.values(paths);
     const names = Object.keys(paths);
 
-    const fetchFile = url => {
-      return new Promise((resolve, reject) => {
-        fetch(`./levels/${url}`).then(response => {
-          if (response.ok) {
-            resolve(response.text());
-          } else {
-            reject(new Error(response.statusText));
-          }
-        });
+    const fetchFile = (url) => new Promise((resolve, reject) => {
+      fetch(`./levels/${url}`).then((response) => {
+        if (response.ok) {
+          resolve(response.text());
+        } else {
+          reject(new Error(response.statusText));
+        }
       });
-    };
+    });
 
 
-    Promise.all(urls.map(url => fetchFile(url)))
-      .then(data => {
+    Promise.all(urls.map((url) => fetchFile(url)))
+      .then((data) => {
         for (let i = 0; i < data.length; i += 1) {
           this[names[i]] = data[i];
         }
@@ -155,7 +153,7 @@ const level = {
               this.inProgress = true;
               check.disabled = false;
             },
-            { once: true }
+            { once: true },
           );
 
           // console.warn(`Loaded ${this.current}`);
@@ -172,7 +170,7 @@ const level = {
           skipLevel.disabled = false;
         }, 100);
       })
-      .catch(error => {
+      .catch((error) => {
         this.handleNotFound();
         throw Error(error);
       });
@@ -203,43 +201,38 @@ const level = {
 
     setTimeout(() => {
       if (
-        level.mode === 'pro' ||
-        level.mode === 'normal' ||
-        level.mode === 'easy'
+        level.mode === 'pro'
+        || level.mode === 'normal'
+        || level.mode === 'easy'
       ) {
-        // eslint-disable-next-line prettier/prettier
-        resultsMenu.querySelector('h2').innerText = `Unfortunatly, this mode currently doesn't support automated checking.`;
+        resultsMenu.querySelector('h2').innerText = 'Unfortunatly, this mode currently doesn\'t support automated checking.';
       } else {
         review().then(
-          result => {
+          () => {
             console.log('Excellent job');
             level.correct = true;
             loadNextLevel.innerText = 'Next';
             loadNextLevel.classList.remove('shouldFix');
             loadNextLevel.parentNode.replaceChild(
               loadNextLevel.cloneNode(true),
-              loadNextLevel
+              loadNextLevel,
             );
             document
               .getElementById('loadNextLevel')
-              .addEventListener('click', () =>
+              .addEventListener('click', () => {
                 // eslint-disable-next-line no-plusplus
-                level.loadLevel(++level.current)
-              );
+                level.loadLevel(++level.current);
+              });
             fixButton.style.display = 'none';
             donateButton.style.display = 'inline-block';
-            // eslint-disable-next-line prettier/prettier
-            resultsMenu.querySelector('h2').innerText = `Some shit about your genius`;
-            resultsMenu.querySelector(
-              '.resultsContainer'
-            ).innerHTML = `<p>Level completed in ${this.timer.min +
-              60 * this.timer.h} minutes and ${this.timer.sec} seconds.<p/>`;
+            resultsMenu.querySelector('h2').innerText = 'Some shit about your genius';
+            resultsMenu.querySelector('.resultsContainer').innerHTML = `<p>Level completed in ${this.timer.min + (60 * this.timer.h)} minutes and ${this.timer.sec} seconds.<p/>`;
 
             popUp.close(loading);
             popUp.show(resultsMenu);
             check.disbaled = false;
           },
-          errors => {
+          (errors) => {
             console.warn(errors);
             level.correct = false;
             fixButton.style.display = 'block';
@@ -247,7 +240,7 @@ const level = {
             resultsMenu.querySelector('.resultsContainer').innerHTML = '';
 
             let i = 0;
-            errors.forEach(message => {
+            errors.forEach((message) => {
               i += 1;
 
               if (i < 4) {
@@ -257,10 +250,9 @@ const level = {
                 tempMessage.classList.add('message');
 
                 if (message.type === 1) {
-                  tempEl.innerHTML += `<i class="fas fa-exclamation-circle messageIcon"></i>`;
-                  tempMessage.innerHTML += `<span class="messageText"> You did not match all the selectors. </span>`;
-                  tempMessage.innerHTML += `<span class="messageElement">at line:&nbsp;<span class="messageElementName">${message.line}</span></span>
-                  `;
+                  tempEl.innerHTML += '<i class="fas fa-exclamation-circle messageIcon"></i>';
+                  tempMessage.innerHTML += '<span class="messageText"> You did not match all the selectors. </span>';
+                  tempMessage.innerHTML += `<span class="messageElement">at line:&nbsp;<span class="messageElementName">${message.line}</span></span>`;
 
                   tempEl.appendChild(tempMessage);
 
@@ -275,8 +267,8 @@ const level = {
                   if (message.element.id !== '') {
                     elementName = `#${message.element.id}`;
                   } else if (
-                    message.element.id === '' &&
-                    message.element.className !== ''
+                    message.element.id === ''
+                    && message.element.className !== ''
                   ) {
                     elementName = `.${message.element.className}`;
                   } else {
@@ -292,12 +284,12 @@ const level = {
                     }
                   }
 
-                  tempEl.innerHTML += `<i class="fas fa-bug messageIcon"></i>`;
+                  tempEl.innerHTML += '<i class="fas fa-bug messageIcon"></i>';
                   tempMessage.innerHTML += `
                   <span class="messageText">
                     <span class="messageProperty">
-                    ${message.property.charAt(0).toUpperCase() +
-                      message.property
+                    ${message.property.charAt(0).toUpperCase()
+                      + message.property
                         .slice(1)
                         .replace(/([a-z])([A-Z])/g, '$1 $2')}
                     </span>
@@ -326,15 +318,13 @@ const level = {
                     tempEl.appendChild(tempHint);
                   }
                 } else {
-                  tempEl.innerHTML += `<i class="fas fa-exclamation messageIcon"></i>`;
-                  tempMessage.innerHTML += `<span class="messageText> Sorry, we couldn't review your solution. </span>`;
+                  tempEl.innerHTML += '<i class="fas fa-exclamation messageIcon"></i>';
+                  tempMessage.innerHTML += '<span class="messageText> Sorry, we couldn\'t review your solution. </span>';
 
                   tempEl.appendChild(tempMessage);
                 }
 
-                resultsMenu
-                  .querySelector('.resultsContainer')
-                  .appendChild(tempEl);
+                resultsMenu.querySelector('.resultsContainer').appendChild(tempEl);
               } else if (i === 5) {
                 let numberOfErrors = errors.length - i + 1;
                 if (numberOfErrors > 15) {
@@ -359,7 +349,7 @@ const level = {
 
             popUp.close(loading);
             popUp.show(resultsMenu);
-          }
+          },
         );
       }
     }, 200);
@@ -411,7 +401,7 @@ const level = {
     puzzles.innerHTML = '';
 
     shuffleArray(this.json.cssHints);
-    this.json.cssHints.forEach(hint => {
+    this.json.cssHints.forEach((hint) => {
       const el = document.createElement('span');
       el.innerText = hint;
       el.setAttribute('draggable', true);
@@ -478,7 +468,7 @@ const level = {
   css: '',
   hiddencss: '',
   usercss: '',
-  globalhtml: `<script>console.log = function() {}; console.error = function() {}</script>`,
+  globalhtml: '<script>console.log = function() {}; console.error = function() {}</script>',
   globalcss: `
   *:selection {
     background: grey;

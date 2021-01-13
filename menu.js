@@ -1,4 +1,5 @@
 /* eslint-disable no-loop-func */
+/* eslint-disable no-param-reassign */
 const menu = document.getElementsByClassName('menu');
 const helpBtn = document.getElementsByClassName('helpBtn');
 const overlay = document.querySelector('.overlay');
@@ -21,7 +22,6 @@ const popUp = {
       if (el === helpMenu) {
         pauseMenu.style.display = 'none';
         if (level.started || !level.firstTime) {
-          // eslint-disable-next-line prettier/prettier
           document.querySelector('#helpMenu .menuTop .title').innerText = 'Need some help?';
         }
       }
@@ -90,7 +90,7 @@ for (let i = 0; i < menu.length; i += 1) {
           level.inProgress = true;
           check.disabled = false;
         },
-        { once: true }
+        { once: true },
       );
     });
   } catch (e) {
@@ -100,7 +100,6 @@ for (let i = 0; i < menu.length; i += 1) {
     menu[i]
       .querySelector('.closeMenu')
       .addEventListener('click', () => popUp.close());
-
   } catch (e) {
     // nothing
   }
@@ -167,10 +166,7 @@ document
   // eslint-disable-next-line no-plusplus
   .addEventListener('click', () => level.loadLevel(++level.current));
 document.getElementById('donateButton').addEventListener('click', () => {
-  window.open(
-    'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HQ4LFMNPKUVAA&source=url',
-    '_blank'
-  );
+
 });
 document
   .getElementById('pause')

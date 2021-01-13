@@ -32,7 +32,7 @@
   <script defer src="codemirror/addon/color/codemirror-colorpicker.min.js"></script>
   <script defer src="codemirror/mode/xml/xml.js"></script>
   <script defer src="codemirror/mode/css/css.js"></script>
-  <script defer src="engine.js"></script>
+  <script defer src="helpers.js"></script>
   <script defer src="codeMirrorConfig.js"></script>
   <script defer src="slider.js"></script>
   <script defer src="review.js"></script>
@@ -121,7 +121,7 @@
           Click on labels or adjust the slider to select game mode.<br>
           Use ctrl - z or <i class="fas fa-undo fa-sm"></i> button to undo.<br>
           To reverse your last undo click ctrl - alt - z.<br>
-          If you disabled auto-refresh in menu, use ctrl-s or <i class="fas fa-play fa-sm"></i> to update preview.<br>
+          If you have disabled auto-refresh in menu, use ctrl-s or <i class="fas fa-play fa-sm"></i> to update preview.<br>
           In certain modes, if you are pro, you can disable hints.<br>
           Values showed on results page comes from computedStyle, but You should use relative (%, em, vw...) units.<br>
           To cancel dragging just drop block outside editor.<br>
@@ -154,16 +154,6 @@
             <p>All is up to you. Level checking will propably broke. Use your creativity and share the solution with your friends.</p><br>
           </li>
         </ol>
-      <p>
-        This game will be constantly developed. In the future, it will be able to:
-      </p>
-      <ul>
-        <li>work smooth on smartphones</li>
-        <li>save your work and synchronize between devices</li>
-        <li>algorithmically generate levels</li>
-        <li>teach you CSS</li>
-      </ul>
-      <p>You can send me new levels on learn@awasome.css</p>
     </div>
     <div class="menuBottom">
       <span class="author">Made by 15yo Łukasz Wielgus</span>
@@ -277,8 +267,9 @@
 <script>
 // eslint-disable-next-line no-restricted-globals
 if (screen.width <= 700 && document.location.search === '?eruda') {
+  // mobile dev tools without adb
   const script = document.createElement('script');
-  script.src = '//cdn.jsdelivr.net/npm/eruda';
+  script.src = 'cdn.jsdelivr.net/npm/eruda';
   document.body.appendChild(script);
   script.onload = () => {
     eruda.init();

@@ -1,6 +1,6 @@
 @font-face {
     font-family: block;
-    src: url("./block.otf") format("opentype");
+    src: url("./blockCustomFont.otf") format("opentype");
 }
 
 *,
